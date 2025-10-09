@@ -1,7 +1,7 @@
 ---
 title: "Untitled"
-author: "Your Name Here"
-date: "2025-??-??"
+author: "Luke"
+date: "2025-09-09"
 output:
   github_document:
     toc: true
@@ -30,3 +30,9 @@ plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+# i like eating cheese nom nom
+```
+
+##Practice Header
