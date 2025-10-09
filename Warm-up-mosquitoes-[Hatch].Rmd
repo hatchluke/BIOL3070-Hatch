@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # ABSTRACT
 
-This study investigated the role of house finches as WNV reservoirs in the Salt Lake City area. To do so, mosquito bloodmeals were collected from various areas known to contain or not contain WNV. These bloodmeals were then amplified through PCR, sequenced, and BLASTed to determine from which organisms they came from. Using this data, it was determined where house finch are present, there is a higher likelihood of finding WNV as well.
+This study investigated the role of different species as West Nile Virus reservoirs in the Salt Lake City area. The proposed question was: Which bird species are the highest amplifying hosts of WNV within Salt Lake City? To determine this, mosquito bloodmeals were collected from various areas known to contain or not contain WNV. These bloodmeals were then amplified through PCR, sequenced, and BLASTed to determine from which organisms they came from. Results showed a positive and significant correlation between WNV presence and house finch bloodmeals. Based on this data, it was determined where house finches are present, there is a higher likelihood of finding WNV. Additionally, the more mosquitos consume blood meals from house finches, the more likely the spread of WNV.
 
 # BACKGROUND
 

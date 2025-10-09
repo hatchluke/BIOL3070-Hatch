@@ -1,7 +1,7 @@
 Warm-up Mini-Report: Mosquito Blood Hosts in Salt Lake City, Utah
 ================
 Luke Hatch
-2025-10-08
+2025-10-09
 
 - [ABSTRACT](#abstract)
 - [BACKGROUND](#background)
@@ -20,9 +20,17 @@ Luke Hatch
 
 # ABSTRACT
 
-Fill in abstract… Write this last, after finishing methods, results, and
-discussion. Summarize the overall study question, approach, results, and
-conclusion in a short paragraph.
+This study investigated the role of different species as West Nile Virus
+reservoirs in the Salt Lake City area. The proposed question was:Which
+bird species are the highest amplifying hosts of WNV within Salt Lake
+City? To determine this, mosquito bloodmeals were collected from various
+areas known to contain or not contain WNV. These bloodmeals were then
+amplified through PCR, sequenced, and BLASTed to determine from which
+organisms they came from. Results showed a positive and significant
+correlation between WNV and house finch bloodmeals. Based on this data,
+it was determined where house finch are present, there is a higher
+likelihood of finding WNV. Additionally, that the more mosquitos consume
+blood meals from house finches, the more likely the spread of WNV.
 
 # BACKGROUND
 
@@ -337,4 +345,4 @@ the spread - and therefore amplification - of WNV in SLC.
     311–322. <https://doi.org/10.3201/eid0903.020628>
 
 2.  ChatGPT. OpenAI, version Jan 2025. Used as a reference for functions
-    such as plot() and to correct syntax errors. Accessed 2025-10-08.
+    such as plot() and to correct syntax errors. Accessed 2025-10-09.
