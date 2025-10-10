@@ -1,7 +1,7 @@
 Warm-up Mini-Report: Mosquito Blood Hosts in Salt Lake City, Utah
 ================
 Luke Hatch
-2025-10-09
+2025-10-10
 
 - [ABSTRACT](#abstract)
 - [BACKGROUND](#background)
@@ -21,16 +21,17 @@ Luke Hatch
 # ABSTRACT
 
 This study investigated the role of different species as West Nile Virus
-reservoirs in the Salt Lake City area. The proposed question was:Which
+reservoirs in the Salt Lake City area. The proposed question was: Which
 bird species are the highest amplifying hosts of WNV within Salt Lake
 City? To determine this, mosquito bloodmeals were collected from various
 areas known to contain or not contain WNV. These bloodmeals were then
 amplified through PCR, sequenced, and BLASTed to determine from which
 organisms they came from. Results showed a positive and significant
-correlation between WNV and house finch bloodmeals. Based on this data,
-it was determined where house finch are present, there is a higher
-likelihood of finding WNV. Additionally, that the more mosquitos consume
-blood meals from house finches, the more likely the spread of WNV.
+correlation between WNV presence and house finch bloodmeals. Based on
+this data, it was determined where house finches are present, there is a
+higher likelihood of finding WNV. Additionally, the more mosquitos
+consume bloodmeals from house finches, the more likely the spread of
+WNV.
 
 # BACKGROUND
 
@@ -42,12 +43,12 @@ the mosquito, a vector. The mosquito can then feed on another bird or
 mammal, spreading WNV to a new host. WNV can be fatal in many animals,
 especially horses (Dr. Greg White). Thus, it is important to understand
 the movement of this virus through mosquitos and prevent further spread.
-One way to study this system is through mosquito blood meals. Mosquito
-blood meals are studied through extracting the DNA from the blood in
+One way to study this system is through mosquito bloodmeals. Mosquito
+bloodmeals are studied through extracting the DNA from the blood in
 mosquitos (from hosts they’ve fed from). This DNA is ran through PCR,
 where specific sections of the host DNA are amplified for analysis in
 sequencing. The sequenced DNA can then be matched with known DNA
-sequences to determine what host species the blood meal came from. This
+sequences to determine what host species the bloodmeal came from. This
 process can be seen in the research of Komar et al. (2003) as they
 examined American birds with the New York 1999 strain of WNV. Birds tend
 to have high viremia, meaning they hold higher concentrations of the
@@ -56,10 +57,10 @@ spread from mosquito bloodmeals. Komar et al. (2003) examined 25 bird
 species after infection to see their viremia levels and survival rates
 of WNV. One species in particular, the House Finch, is a very common
 sight in Salt Lake City and showed high WNV reservoir competence in
-their research. Additionally, as seen below house finches tend to “hold
-onto” the virus for longer. With these findings, we could expect to see
-higher levels of WNV present in mosquitos’ house finch blood meals in
-our research.
+their research. This is also demonstrated in the viremia bar plot below,
+where house finches tend to “hold onto” the virus longer than other
+birds. With these findings, we could expect to see higher levels of WNV
+present in mosquitos’ house finch bloodmeals in our research.
 
 ``` r
 # Manually transcribe duration (mean, lo, hi) from the last table column
@@ -122,7 +123,7 @@ overall in WNV areas compared to non-WNV areas.
 Mosquitos were trapped in various areas known to either have or not have
 the WNV present. They were trapped using either a Gravid or CO2 trap.
 Following the collection of mosquitos, the mosquitos were smashed/ground
-up to extract the DNA from their blood meals. The DNA was amplified and
+up to extract the DNA from their bloodmeals. The DNA was amplified and
 sequenced to compare with known DNA sequences in order to identify what
 hosts the mosquitos were feeding on. After identifying each species, the
 data was placed in a file with the DNA sequences and associated species.
@@ -132,12 +133,12 @@ significance. This was done in R-studio (see analysis 1 and 2).
 ## 1st Analysis (Barplot)
 
 The code chunk below aggregates the number of host counts per location
-and produces a bar plot with blood meal count on the x-axis and each
-species on the y-axis. The barplot shows mosquito blood meals between
+and produces a bar plot with bloodmeal count on the x-axis and each
+species on the y-axis. The bar plot shows mosquito bloodmeals between
 areas with known WNV-negative pools and areas with known WNV-positive
-pools among different bird species. The barplot provides a visual
+pools among different bird species. The bar plot provides a visual
 comparison to quickly distinguish which bird species had the highest
-blood meal counts in each area.
+bloodmeal counts in each area.
 
 ``` r
 ## import counts_matrix: data.frame with column 'loc_positives' (0/1) and host columns 'host_*'
@@ -238,7 +239,7 @@ host_species_colors <- species_colors
 ## 2nd Analysis (Logistic/Linear Regressions)
 
 This analysis determines whether it is simply the presence or the number
-of house finch blood meals that can predict whether a site has WNV +
+of house finch bloodmeals that can predict whether a site has WNV +
 pools (binary) or a higher WNV positivity rate (numeric). Essentially,
 this statistical test allows the formal evaluation of the relationships
 visualized above in the barplots and determines whether the house finch
@@ -328,11 +329,11 @@ reservoirs.
 
 Overall, the results support the hypothesis - house finches showed
 significance in acting as reservoirs for WNV. This was shown by the data
-organized in the barplot demonstrating higher bloodmeals in both
+organized in the bar plot demonstrating higher bloodmeals in both
 positive and negative areas for WNV in house finches. The second
 analysis delved deeper into the house finch specifically and tested for
 numerical significance. It can be concluded that as the number of house
-finch blood meals increases, as does the likelihood of finding WNV.
+finch bloodmeals increases, as does the likelihood of finding WNV.
 Similarly, the more house finch meals mosquitos have, the more likely
 the spread - and therefore amplification - of WNV in SLC.
 
@@ -345,4 +346,4 @@ the spread - and therefore amplification - of WNV in SLC.
     311–322. <https://doi.org/10.3201/eid0903.020628>
 
 2.  ChatGPT. OpenAI, version Jan 2025. Used as a reference for functions
-    such as plot() and to correct syntax errors. Accessed 2025-10-09.
+    such as plot() and to correct syntax errors. Accessed 2025-10-10.
