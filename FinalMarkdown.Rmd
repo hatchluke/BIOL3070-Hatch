@@ -9,6 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 # ABSTRACT
 
@@ -30,6 +31,19 @@ line plot (change over time) and linear regression (for peak abundance each year
 
 
 ## 1st Analysis (Line Plot)
+
+```{r multiplot}
+data <-read.csv("UtahFirefly.csv")
+
+
+ggplot(data, aes(x= Month))+
+  geom_bar(fill = "yellow3") +
+  facet_grid(~ Year) +
+  labs(title = "Number of Instances by Month and Year", 
+       x = "Month", 
+       y = "Number of Instances") +
+  theme_minimal()
+```
 
 
 ```{r eval=FALSE}

@@ -1,7 +1,7 @@
 Final Markdown Report
 ================
 Luke Hatch
-2025-10-29
+2025-10-30
 
 - [ABSTRACT](#abstract)
 - [BACKGROUND](#background)
@@ -44,6 +44,21 @@ each year)
 # METHODS
 
 ## 1st Analysis (Line Plot)
+
+``` r
+data <-read.csv("UtahFirefly.csv")
+
+
+ggplot(data, aes(x= Month))+
+  geom_bar(fill = "yellow3") +
+  facet_grid(~ Year) +
+  labs(title = "Number of Instances by Month and Year", 
+       x = "Month", 
+       y = "Number of Instances") +
+  theme_minimal()
+```
+
+![](FinalMarkdown_files/figure-gfm/multiplot-1.png)<!-- -->
 
 ``` r
 # Libraries
@@ -139,4 +154,4 @@ the spread - and therefore amplification - of WNV in SLC.
     311–322. <https://doi.org/10.3201/eid0903.020628>
 
 2.  ChatGPT. OpenAI, version Jan 2025. Used as a reference for functions
-    such as plot() and to correct syntax errors. Accessed 2025-10-29.
+    such as plot() and to correct syntax errors. Accessed 2025-10-30.
