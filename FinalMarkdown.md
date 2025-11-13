@@ -1,19 +1,17 @@
 Final Markdown Report
 ================
 Luke Hatch
-2025-10-30
+2025-11-11
 
 - [ABSTRACT](#abstract)
 - [BACKGROUND](#background)
   - [Question](#question)
   - [Hypothesis](#hypothesis)
-  - [Possible visualizations and test
-    statistic(s)](#possible-visualizations-and-test-statistics)
   - [Prediction](#prediction)
 - [METHODS](#methods)
-  - [1st Analysis (Line Plot)](#1st-analysis-line-plot)
-  - [2nd Analysis (Logistic/Linear
-    Regressions)](#2nd-analysis-logisticlinear-regressions)
+  - [1st Analysis (Bar Plot)](#1st-analysis-bar-plot)
+  - [2nd Analysis (Scatterplot)](#2nd-analysis-scatterplot)
+  - [3rd Analysis (ANOVA)](#3rd-analysis-anova)
 - [DISCUSSION](#discussion)
   - [Interpretation of Analysis 1](#interpretation-of-analysis-1)
   - [Interpretation of Analysis 2](#interpretation-of-analysis-2)
@@ -31,26 +29,21 @@ How has firefly abundance changed monthly over the last 8 years
 
 ## Hypothesis
 
-Due to temperature changes (global warming), we’d expect to see an
+Due to temperature changes (e.g. global warming), we’d expect to see an
 increase in abundance sooner in the year as each year passes.
-
-## Possible visualizations and test statistic(s)
-
-line plot (change over time) and linear regression (for peak abundance
-each year)
 
 ## Prediction
 
 # METHODS
 
-## 1st Analysis (Line Plot)
+## 1st Analysis (Bar Plot)
 
 ``` r
 data <-read.csv("UtahFirefly.csv")
 
 
 ggplot(data, aes(x= Month))+
-  geom_bar(fill = "yellow3") +
+  geom_bar(fill = "steelblue3") +
   facet_grid(~ Year) +
   labs(title = "Number of Instances by Month and Year", 
        x = "Month", 
@@ -60,51 +53,59 @@ ggplot(data, aes(x= Month))+
 
 ![](FinalMarkdown_files/figure-gfm/multiplot-1.png)<!-- -->
 
-``` r
-# Libraries
-library(ggplot2)
-library(hrbrthemes)
-read.csv("UtahFireflies - 2014-2024.csv") #insert file once data is refined
-
-# create data
-Time <- 1:10 #this will read from the dates in the data
-Firefly Sightings <- cumsum(rnorm(10)) #this will pull from the counts/sightings
-data <- data.frame(Time,Firefly Sightings)
-
-# Plot
-ggplot(data, aes(x=Time, y=Firefly Sightings)) +
-  geom_line( color="#69b3a2", size=2, alpha=0.9, linetype=2) +
-  theme_ipsum() +
-  ggtitle("Monthly Firefly Count from 2018-2024")
-```
-
-## 2nd Analysis (Logistic/Linear Regressions)
+## 2nd Analysis (Scatterplot)
 
 ``` r
-# Add data
-data <- data.frame(
-  cond = rep(c("condition_1", "condition_2"), each=10), 
-  my_x = 1:100 + rnorm(100,sd=9), 
-  my_y = 1:100 + rnorm(100,sd=16) 
-)
-
-# Basic scatter plot.
-p1 <- ggplot(data, aes(x=my_x, y=my_y)) + 
-  geom_point( color="#69b3a2") +
-  theme_ipsum()
- 
-# with linear trend
-p2 <- ggplot(data, aes(x=my_x, y=my_y)) +
-  geom_point() +
-  geom_smooth(method=lm , color="red", se=FALSE) +
-  theme_ipsum()
-
-# linear trend + confidence interval
-p3 <- ggplot(data, aes(x=my_x, y=my_y)) +
-  geom_point() +
-  geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
-  theme_ipsum()
+#make plot of Max Julian day
+table_Julian <- table(data$Year, data$Julian)
+#find the max count each year
+max_col <- apply(table_Julian, 1, which.max) 
+# create a data frame with year and max julian day
+Julian <- as.numeric(colnames(table_Julian)[max_col])
+Year <- c(2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
+#plot as scatter plot
+plot(Year, Julian, main = "Scatterplot of Peak Counts")
 ```
+
+![](FinalMarkdown_files/figure-gfm/second-1.png)<!-- -->
+
+## 3rd Analysis (ANOVA)
+
+``` r
+#create data frame 
+Julian_dataframe <- data.frame(ColumnA = Julian, ColumnB = Year)
+m1 <- lm( ColumnA ~ ColumnB, data=Julian_dataframe)
+# run anova test for p value
+anova(m1)
+```
+
+    ## Analysis of Variance Table
+    ## 
+    ## Response: ColumnA
+    ##           Df Sum Sq Mean Sq F value Pr(>F)
+    ## ColumnB    1 135.00  135.00  1.2014 0.3093
+    ## Residuals  7 786.56  112.36
+
+``` r
+summary(m1)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = ColumnA ~ ColumnB, data = Julian_dataframe)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -18.278  -2.778  -1.778   7.222  16.222 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)
+    ## (Intercept) 3192.778   2764.342   1.155    0.286
+    ## ColumnB       -1.500      1.368  -1.096    0.309
+    ## 
+    ## Residual standard error: 10.6 on 7 degrees of freedom
+    ## Multiple R-squared:  0.1465, Adjusted R-squared:  0.02456 
+    ## F-statistic: 1.201 on 1 and 7 DF,  p-value: 0.3093
 
 # DISCUSSION
 
@@ -154,4 +155,4 @@ the spread - and therefore amplification - of WNV in SLC.
     311–322. <https://doi.org/10.3201/eid0903.020628>
 
 2.  ChatGPT. OpenAI, version Jan 2025. Used as a reference for functions
-    such as plot() and to correct syntax errors. Accessed 2025-10-30.
+    such as plot() and to correct syntax errors. Accessed 2025-11-11.

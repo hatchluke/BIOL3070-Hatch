@@ -1,5 +1,5 @@
 ---
-title: "Final Markdown Report"
+title: "Final Markdown Report - Fireflies"
 author: "Luke Hatch"
 date: "`r Sys.Date()`"
 output:
@@ -14,30 +14,28 @@ library(ggplot2)
 # ABSTRACT
 
 # BACKGROUND
+Fireflies are among the most mesmerizing insects in the world due to their unique glow in the night sky. Most people would run to avoid insects, but for these they stop and watch. In some cases, they even record what they saw, providing firefly citizen scientist data that supports further research on their behavior. Before they're in the sky, however, they spend the majority of their lives underground developing. Duration of their lives underground is influenced by a variety of factors (Evans et al., 2019, p. 266). Depending primarily on climate and soil conditions, the stages of the firefly life cycles can be altered - taking or adding time (Evans et al., 2019, p. 266). Because these conditions change each year, the timing and abundance of emerged fireflies can also fluctuate. This report uses citizen science data collected in Utah to examine firefly abundance over the past 8 years.
 
 ## Question  
 How has firefly abundance changed monthly over the last 8 years (2016-2024)?
 
 ## Hypothesis 
-Due to temperature changes (global warming), we'd expect to see an increase in abundance sooner in the year as each year passes.
-
-## Possible visualizations and test statistic(s)
-line plot (change over time) and linear regression (for peak abundance each year)
+Due to temperature changes (e.g. global warming), fireflies are expected to emerge sooner in the year as each year passes, as warmer temperatures can accelerate their development and affect the timing of emergence (Evans et al., 2019, p. 266).
 
 ## Prediction
- 
+If temperature increases have influenced firefly emergence, then peak abundance would be observed earlier in years where the temperature is higher earlier in that year (such as emerging in June vs. July).
 
 # METHODS
 
 
-## 1st Analysis (Line Plot)
+## 1st Analysis (Bar Plot)
 
 ```{r multiplot}
 data <-read.csv("UtahFirefly.csv")
 
 
 ggplot(data, aes(x= Month))+
-  geom_bar(fill = "yellow3") +
+  geom_bar(fill = "steelblue3") +
   facet_grid(~ Year) +
   labs(title = "Number of Instances by Month and Year", 
        x = "Month", 
@@ -45,54 +43,38 @@ ggplot(data, aes(x= Month))+
   theme_minimal()
 ```
 
+## 2nd Analysis (Scatterplot)
 
-```{r eval=FALSE}
+```{r second}
 
-# Libraries
-library(ggplot2)
-library(hrbrthemes)
-read.csv("UtahFireflies - 2014-2024.csv") #insert file once data is refined
+#make plot of Max Julian day
+table_Julian <- table(data$Year, data$Julian)
+#find the max count each year
+max_col <- apply(table_Julian, 1, which.max)
+# create a data frame with year and max julian day
+Julian <- as.numeric(colnames(table_Julian)[max_col])
+Year <- c(2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
+# Create a color gradient
+color_gradient <- colorRampPalette(c("steelblue1", "steelblue4"))
+# Generate a vector of colors based on Julian values
+cols <- color_gradient(100)[as.numeric(cut(Julian, breaks = 100))]
+#plot as scatter plot
+plot(Year, Julian, main = "Scatterplot of Peak Counts Each Year",
+     col = cols,
+     pch = 19,       # filled circles
+     cex = 1.5,
+     ylab = "Julian Day")      # point size
 
-# create data
-Time <- 1:10 #this will read from the dates in the data
-Firefly Sightings <- cumsum(rnorm(10)) #this will pull from the counts/sightings
-data <- data.frame(Time,Firefly Sightings)
-
-# Plot
-ggplot(data, aes(x=Time, y=Firefly Sightings)) +
-  geom_line( color="#69b3a2", size=2, alpha=0.9, linetype=2) +
-  theme_ipsum() +
-  ggtitle("Monthly Firefly Count from 2018-2024")
 ```
 
-## 2nd Analysis (Logistic/Linear Regressions)
-
-
-```{r eval=FALSE}
-
-# Add data
-data <- data.frame(
-  cond = rep(c("condition_1", "condition_2"), each=10), 
-  my_x = 1:100 + rnorm(100,sd=9), 
-  my_y = 1:100 + rnorm(100,sd=16) 
-)
-
-# Basic scatter plot.
-p1 <- ggplot(data, aes(x=my_x, y=my_y)) + 
-  geom_point( color="#69b3a2") +
-  theme_ipsum()
- 
-# with linear trend
-p2 <- ggplot(data, aes(x=my_x, y=my_y)) +
-  geom_point() +
-  geom_smooth(method=lm , color="red", se=FALSE) +
-  theme_ipsum()
-
-# linear trend + confidence interval
-p3 <- ggplot(data, aes(x=my_x, y=my_y)) +
-  geom_point() +
-  geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
-  theme_ipsum()
+## 3rd Analysis (ANOVA)
+```{r, third}
+#create data frame 
+Julian_dataframe <- data.frame(ColumnA = Julian, ColumnB = Year)
+m1 <- lm( ColumnA ~ ColumnB, data=Julian_dataframe)
+# run anova test for p value
+anova(m1)
+summary(m1)
 ```
 
 # DISCUSSION
