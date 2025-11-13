@@ -93,6 +93,6 @@ Overall, the results support the hypothesis - house finches showed significance 
 
 # REFERENCES
 
-1. Komar, N., Langevin, S., Hinten, S., Nemeth, N., Edwards, E., Hettler, D., Davis, B., Bowen, R., & Bunning, M. (2003). Experimental infection of North American birds with the New York 1999 strain of West Nile virus. Emerging Infectious Diseases, 9(3), 311–322. https://doi.org/10.3201/eid0903.020628
+1. Evans, D. M., Boyer, A. G., Phillips, M. L., & Jepsen, S. J. (2019). Firefly (Coleoptera: Lampyridae) phenology, life history, and habitat associations in the western United States. Environmental Entomology, 48(2), 265–273. https://doi.org/10.1111/een.12702
 
 2. ChatGPT. OpenAI, version Nov 2025. Used as a reference for functions such as plot() and to correct syntax errors. Accessed `r Sys.Date()`.

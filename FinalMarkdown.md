@@ -1,7 +1,7 @@
-Final Markdown Report
+Final Markdown Report - Fireflies
 ================
 Luke Hatch
-2025-11-11
+2025-11-13
 
 - [ABSTRACT](#abstract)
 - [BACKGROUND](#background)
@@ -22,6 +22,20 @@ Luke Hatch
 
 # BACKGROUND
 
+Fireflies are among the most mesmerizing insects in the world due to
+their unique glow in the night sky. Most people would run to avoid
+insects, but for these they stop and watch. In some cases, they even
+record what they saw, providing firefly citizen scientist data that
+supports further research on their behavior. Before they’re in the sky,
+however, they spend the majority of their lives underground developing.
+Duration of their lives underground is influenced by a variety of
+factors (Evans et al., 2019, p. 266). Depending primarily on climate and
+soil conditions, the stages of the firefly life cycles can be altered -
+taking or adding time (Evans et al., 2019, p. 266). Because these
+conditions change each year, the timing and abundance of emerged
+fireflies can also fluctuate. This report uses citizen science data
+collected in Utah to examine firefly abundance over the past 8 years.
+
 ## Question
 
 How has firefly abundance changed monthly over the last 8 years
@@ -29,10 +43,16 @@ How has firefly abundance changed monthly over the last 8 years
 
 ## Hypothesis
 
-Due to temperature changes (e.g. global warming), we’d expect to see an
-increase in abundance sooner in the year as each year passes.
+Due to temperature changes (e.g. global warming), fireflies are expected
+to emerge sooner in the year as each year passes, as warmer temperatures
+can accelerate their development and affect the timing of emergence
+(Evans et al., 2019, p. 266).
 
 ## Prediction
+
+If temperature increases have influenced firefly emergence, then peak
+abundance would be observed earlier in years where the temperature is
+higher earlier in that year (such as emerging in June vs. July).
 
 # METHODS
 
@@ -59,12 +79,20 @@ ggplot(data, aes(x= Month))+
 #make plot of Max Julian day
 table_Julian <- table(data$Year, data$Julian)
 #find the max count each year
-max_col <- apply(table_Julian, 1, which.max) 
+max_col <- apply(table_Julian, 1, which.max)
 # create a data frame with year and max julian day
 Julian <- as.numeric(colnames(table_Julian)[max_col])
 Year <- c(2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024)
+# Create a color gradient
+color_gradient <- colorRampPalette(c("steelblue1", "steelblue4"))
+# Generate a vector of colors based on Julian values
+cols <- color_gradient(100)[as.numeric(cut(Julian, breaks = 100))]
 #plot as scatter plot
-plot(Year, Julian, main = "Scatterplot of Peak Counts")
+plot(Year, Julian, main = "Scatterplot of Peak Counts Each Year",
+     col = cols,
+     pch = 19,       # filled circles
+     cex = 1.5,
+     ylab = "Julian Day")      # point size
 ```
 
 ![](FinalMarkdown_files/figure-gfm/second-1.png)<!-- -->
@@ -154,5 +182,5 @@ the spread - and therefore amplification - of WNV in SLC.
     1999 strain of West Nile virus. Emerging Infectious Diseases, 9(3),
     311–322. <https://doi.org/10.3201/eid0903.020628>
 
-2.  ChatGPT. OpenAI, version Jan 2025. Used as a reference for functions
-    such as plot() and to correct syntax errors. Accessed 2025-11-11.
+2.  ChatGPT. OpenAI, version Nov 2025. Used as a reference for functions
+    such as plot() and to correct syntax errors. Accessed 2025-11-13.
